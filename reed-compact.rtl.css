@@ -6,11 +6,6 @@
 * Relative url()s in reed.css resolve against the Reed folder, so fonts and icons come from there.
 */
 
-/* This theme has no icons/ folder, so the header gets upstream's logo; swap in Reed's */
-img.logo[src$="/themes/icons/FreshRSS-logo.svg"] {
-	content: url("../Reed/icons/FreshRSS-logo.svg");
-}
-
 /* Reed centres the list in a 56rem column; compact rows always span the page.
 * An opened article's text still follows the content width setting */
 #stream.normal :is(.transition, .flux, #new-article) {
@@ -25,12 +20,14 @@ img.logo[src$="/themes/icons/FreshRSS-logo.svg"] {
 .flux .flux_header,
 .flux .flux_header.has-thumbnail.has-summary {
 	grid-template-columns: auto auto auto auto minmax(0, max-content) minmax(0, 1fr) auto auto;
+	/* Upstream's phone CSS gives thumbnail+summary rows two */
 	grid-template-rows: auto;
 	grid-template-areas: "read fav icon site title summary date thumb";
 	align-items: baseline;
 	margin: 1px 0;
 	/* The toggles' own 0.3rem padding makes up the rest of the left inset */
-	padding: 0.5rem 0.45rem 0.5rem 0.75rem;
+	padding-block: 0.5rem;
+	padding-inline: 0.45rem 0.75rem;
 	border-radius: var(--radius);
 }
 
@@ -39,10 +36,11 @@ img.logo[src$="/themes/icons/FreshRSS-logo.svg"] {
 }
 
 .flux .flux_header .favicon {
+	/* Not redundant: the shorthand resets Reed's grid-row span, which would add a second row */
 	grid-area: icon;
-	/* Equal visible gaps circle→star and star→favicon: the toggle icons sit centred in 24px buttons,
+	/* Equal visible gaps circle→star and star→favicon: the toggle icons sit centred in their buttons,
 	* and the circle is drawn 22 wide in a 48 viewBox, so 13/48 of its icon is blank on each side */
-	margin-inline: calc((24px - 0.85rem) / 2 + 0.85rem * 13 / 48) 0.75rem;
+	margin-inline: calc((var(--toggle-size) - var(--toggle-icon)) / 2 + var(--toggle-icon) * 13 / 48) 0.75rem;
 	padding: 2px;
 	width: 20px;
 	height: 20px;
@@ -61,6 +59,7 @@ img.logo[src$="/themes/icons/FreshRSS-logo.svg"] {
 	overflow: hidden;
 	margin: 0;
 	font-size: 0.95rem;
+	/* Reed's .item > a.title outranks the .item-element rule above */
 	line-height: 1.5rem;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -82,32 +81,15 @@ img.logo[src$="/themes/icons/FreshRSS-logo.svg"] {
 /* Flex, or the inline toggle sits on a text baseline and rides ~3px above the favicon */
 .flux .flux_header .item.manage {
 	display: flex;
-}
-
-.flux .flux_header .item.manage,
-.flux .flux_header .item.thumbnail,
-.flux .flux_header.has-thumbnail.has-summary li.thumbnail {
 	align-self: center;
 }
 
-/* Thumbnails shrink to the line: portrait 3:4, square, landscape 16:9 */
+/* Thumbnails shrink to the line; Reed derives the widths from --thumb-h */
 .flux .flux_header .item.thumbnail,
 .flux .flux_header .item.thumbnail.small,
 .flux .flux_header.has-thumbnail.has-summary li.thumbnail {
 	margin-inline-start: 0.5rem;
-	height: 24px;
-}
-
-.flux .flux_header .item.thumbnail:is(.portrait, .portrait.small) {
-	width: 18px;
-}
-
-.flux .flux_header .item.thumbnail:is(.square, .square.small) {
-	width: 24px;
-}
-
-.flux .flux_header .item.thumbnail:is(.landscape, .landscape.small) {
-	width: 43px;
+	--thumb-h: 24px;
 }
 
 .flux .flux_header .item.thumbnail img {
