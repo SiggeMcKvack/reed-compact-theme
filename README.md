@@ -6,7 +6,7 @@ A compact sibling of [Reed](https://github.com/SiggeMcKvack/reed-theme) for [Fre
 
 `(read)(star) [icon] FEED NAME   Title  Excerpt…   time [thumb]`
 
-Everything else is Reed. With **Settings → Display → Content width** set to **No limit**, the list spans the page instead of Reed's centred column. On phones the excerpt is hidden. Upstream already hides the feed name and time there.
+Everything else is Reed. The list always spans the page instead of Reed's centred column; an opened article's text still follows **Settings → Display → Content width**. On phones the excerpt is hidden. Upstream already hides the feed name and time there.
 
 ## Installation
 

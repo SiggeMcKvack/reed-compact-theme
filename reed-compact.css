@@ -11,9 +11,9 @@ img.logo[src$="/themes/icons/FreshRSS-logo.svg"] {
 	content: url("../Reed/icons/FreshRSS-logo.svg");
 }
 
-/* Reed centres the list in a 56rem column; with content width "No limit" the list spans the page.
-* Upstream only marks the setting on each article's .content, so detect it there */
-#stream.normal:has(.content_no_limit) :is(.transition, .flux, #new-article) {
+/* Reed centres the list in a 56rem column; compact rows always span the page.
+* An opened article's text still follows the content width setting */
+#stream.normal :is(.transition, .flux, #new-article) {
 	max-width: none;
 }
 
