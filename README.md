@@ -1,21 +1,23 @@
 # Reed Compact
 
-A compact sibling of [Reed](https://github.com/SiggeMcKvack/reed-theme) for [FreshRSS](https://freshrss.org). Each article in the list takes one line, about as tall as an Origine row (~40px):
+[Reed](https://github.com/SiggeMcKvack/reed-theme) for [FreshRSS](https://freshrss.org), with a denser article list: one line per article, so you see more of your feeds at a glance.
 
 ![Reed Compact theme](thumbs/original.png)
 
-`(read)(star) [icon] FEED NAME   Title  Excerpt…   time [thumb]`
-
-Everything else is Reed. The list always spans the page instead of Reed's centred column; an opened article's text still follows **Settings → Display → Content width**. On phones the excerpt is hidden. Upstream already hides the feed name and time there.
+- Each article on a single line: read and favourite toggles, feed icon and name, title, excerpt, time and thumbnail
+- The list uses the full width of the window
+- Everything else, from colours and fonts to settings pages and dark mode, is the same as Reed
 
 ## Installation
 
-Reed Compact loads `../Reed/reed.css`, so Reed must be installed next to it in a folder named exactly `Reed`:
+Reed Compact builds on Reed, so install both, side by side:
 
 ```
 p/themes/Reed/
 p/themes/Reed-Compact/
 ```
+
+Reed's folder must be named exactly `Reed`. Follow [Reed's installation steps](https://github.com/SiggeMcKvack/reed-theme#installation), then add this theme next to it:
 
 ```sh
 git clone --depth 1 https://github.com/SiggeMcKvack/reed-compact-theme.git p/themes/Reed-Compact
@@ -30,11 +32,11 @@ With Docker, mount both folders:
       - ./reed-compact-theme:/app/www/p/themes/Reed-Compact
 ```
 
-Then choose **Reed Compact** under **Settings → Display → Theme** and do a hard refresh.
+Then choose **Reed Compact** under **Settings → Display → Theme** and do a hard refresh (Cmd/Ctrl+Shift+R).
 
 ## Development
 
-Regenerate the right-to-left stylesheet after editing `reed-compact.css`:
+After editing `reed-compact.css`, regenerate the right-to-left version:
 
 ```sh
 npx rtlcss@4.3.0 reed-compact.css reed-compact.rtl.css
