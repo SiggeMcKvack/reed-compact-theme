@@ -2,7 +2,10 @@
 
 [Reed](https://github.com/SiggeMcKvack/reed-theme) for [FreshRSS](https://freshrss.org), with a denser article list: one line per article, so you see more of your feeds at a glance.
 
-![Reed Compact theme](thumbs/original.png)
+<p>
+  <img alt="Reed Compact theme, light" src="thumbs/original_light.png" width="49%">
+  <img alt="Reed Compact theme, dark" src="thumbs/original.png" width="49%">
+</p>
 
 - Each article on a single line: read and favourite toggles, feed icon and name, title, excerpt, time and thumbnail
 - The list uses the full width of the window
